@@ -1,0 +1,34 @@
+loader(ng-show="vm.loading")
+
+form.flex.middle
+  input.name(type="text" placeholder="Name Phase")
+
+  date-input(place-holder="Start Date")
+
+  date-input(place-holder="Due Date")
+
+  date-input(place-holder="End Date")
+
+  select
+    option(value="") Phase Type
+
+    option a
+
+    option b
+
+    option c
+
+  select
+    option(value="") Status
+
+    option a
+
+    option b
+
+    option c
+
+  button.clean(ng-click="vm.save()")
+    .icon.plus.hollow
+
+  button.clean
+    .icon.minus.hollow

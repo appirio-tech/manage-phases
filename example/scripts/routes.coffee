@@ -3,10 +3,17 @@
 config = ($stateProvider) ->
   states = {}
 
-  states['submissions'] =
+  states['phase-row'] =
     url         : '/'
-    title       : 'submissions'
-    templateUrl : 'views/submissions.example.html'
+    title       : 'phase-row'
+    controller  : 'PhaseRowExampleController as vm'
+    templateUrl : 'views/phase-row.example.html'
+
+  states['phase-list'] =
+    url         : '/list'
+    title       : 'phase-list'
+    controller  : 'PhaseListExampleController as vm'
+    templateUrl : 'views/phase-list.example.html'
 
   for key, state of states
     $stateProvider.state key, state

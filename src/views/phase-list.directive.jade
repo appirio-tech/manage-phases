@@ -1,0 +1,24 @@
+ul
+  li
+    ul.flex
+      li.name
+        label Phase Name
+
+      li.date
+        label Start Date
+
+      li.date
+        label Due Date
+
+      li.date
+        label End Date
+
+      li
+        label Phase Type
+
+      li
+        label Phase Status
+
+
+  li(ng-repeat="phase in phases")
+    phase-row(phase="phase")

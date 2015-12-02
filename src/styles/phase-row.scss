@@ -1,0 +1,22 @@
+@import "work/work-includes";
+
+phase-row {
+  display: block;
+
+  .name {
+    width: 162px;
+  }
+
+  select, date-input {
+    margin-left: 15px;
+  }
+
+  form > button.clean {
+    margin-left: 15px;
+
+    .icon {
+      width : 25px;
+      height: 25px;
+    }
+  }
+}
