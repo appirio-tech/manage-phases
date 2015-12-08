@@ -4,9 +4,8 @@ controller = ($scope) ->
   vm          = this
   vm.phase    = $scope.phase
   vm.loading  = false
-  
-  vm.save     = ->
-  	$scope.add
+
+  vm.save     = $scope.add
 
   #   #vm.loading = true
 

@@ -3,8 +3,8 @@
 controller = ($scope) ->
   vm        = this
   vm.phases = $scope.phases
-  
-  vm.test   = ->
+
+  vm.test = ->
     alert(1)
 
   activate = ->
