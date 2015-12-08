@@ -2,10 +2,13 @@
 
 controller = ($scope) ->
   vm          = this
+  vm.phase    = $scope.phase
   vm.loading  = false
+  
+  vm.save     = ->
+  	$scope.add
 
-  vm.save = ->
-    vm.loading = true
+  #   #vm.loading = true
 
   activate = ->
     vm

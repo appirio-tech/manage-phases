@@ -1,15 +1,15 @@
 loader(ng-show="vm.loading")
 
 form.flex.middle
-  input.name(type="text" placeholder="Name Phase")
+  input.name(type="text" placeholder="Name Phase" value="{{phase.name}}")
 
-  date-input(place-holder="Start Date")
+  date-input(place-holder="Start Date" date="phase.startDate")
 
-  date-input(place-holder="Due Date")
+  date-input(place-holder="Due Date" date="phase.dueDate")
 
-  date-input(place-holder="End Date")
+  date-input(place-holder="End Date" date="phase.endDate")
 
-  select
+  select(ng-model="phase.type")
     option(value="") Phase Type
 
     option a
@@ -18,7 +18,7 @@ form.flex.middle
 
     option c
 
-  select
+  select(ng-model="phase.status")
     option(value="") Status
 
     option a

@@ -7,7 +7,7 @@ controller = ->
   activate = ->
     for i in [0..5]
       vm.phases.push
-        name     : 'batman ' + i
+        name     : 'robin ' + i
         startDate: '2015-12-01'
         endDate  : '2015-12-01'
         dueDate  : '2015-12-01'
@@ -20,4 +20,4 @@ controller = ->
 
 controller.$inject = []
 
-angular.module('example').controller 'PhaseListExampleController', controller
+angular.module('example').controller 'ManagePhasesExampleController', controller
