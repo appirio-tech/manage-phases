@@ -2,6 +2,7 @@
 
 directive = ->
   restrict    : 'E'
+  controller  : 'PhaseListController as vm'
   templateUrl : 'views/phase-list.directive.html'
   scope:
     phases: '='

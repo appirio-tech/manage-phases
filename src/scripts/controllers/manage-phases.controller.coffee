@@ -4,8 +4,8 @@ controller = ($scope) ->
   vm        = this
   vm.phases = $scope.phases
 
-  vm.test = ->
-    alert(1)
+  vm.addPhase = (phase) ->
+    vm.phases.push angular.copy phase
 
   activate = ->
 

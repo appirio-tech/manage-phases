@@ -1,34 +1,31 @@
 loader(ng-show="vm.loading")
+{{ vm.phase }}
+form.flex.middle(name="phase_row")
+  input.name(type="text" 
+             ng-class="{error: vm.nameError && !vm.name.length}" 
+             placeholder="Name Phase" 
+             ng-change="vm.validateField('name')"
+             ng-model="vm.phase.name")
 
-form.flex.middle
-  input.name(type="text" placeholder="Name Phase" value="{{phase.name}}")
+  date-input(place-holder="Start Date"
+             date="vm.phase.startDate")
 
-  date-input(place-holder="Start Date" date="phase.startDate")
+  date-input(place-holder="Due Date"
+             date="vm.phase.dueDate")
 
-  date-input(place-holder="Due Date" date="phase.dueDate")
+  date-input(place-holder="End Date"
+             date="vm.phase.endDate")
 
-  date-input(place-holder="End Date" date="phase.endDate")
+  select(ng-model="vm.phase.type" 
+         ng-options="type.value as type.name for type in vm.types"
+         required)
 
-  select(ng-model="phase.type")
-    option(value="") Phase Type
+  select(ng-model="vm.phase.status"
+         ng-options="status.value as status.name for status in vm.statuses"
+         required)
 
-    option a
-
-    option b
-
-    option c
-
-  select(ng-model="phase.status")
-    option(value="") Status
-
-    option a
-
-    option b
-
-    option c
-
-  button.clean(ng-click="vm.save()")
+  button.clean(ng-click="vm.save()" ng-show="vm.isNew()")
     .icon.plus.hollow
 
   button.clean
-    .icon.minus.hollow
+    .icon.minus(ng-class='{"hollow":vm.deleteCandidate===1}' ng-hide="vm.isNew() || vm.isInProgress()" ng-click="vm.remove()")

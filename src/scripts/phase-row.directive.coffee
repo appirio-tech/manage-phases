@@ -6,6 +6,7 @@ directive = ->
   templateUrl : 'views/phase-row.directive.html'
   scope:
     phase: '='
-    add: '&'
+    addClick: '&'
+    removeClick: '&'
 
 angular.module('appirio-tech-ng-manage-phases').directive 'phaseRow', directive

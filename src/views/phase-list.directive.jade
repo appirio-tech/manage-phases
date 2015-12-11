@@ -21,4 +21,4 @@ ul
 
 
   li(ng-repeat="phase in phases")
-    phase-row(phase="phase")
+    phase-row(phase="phase" remove-click="vm.removePhase(phase)")
