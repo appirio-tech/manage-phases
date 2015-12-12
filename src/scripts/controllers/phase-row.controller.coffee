@@ -2,7 +2,7 @@
 
 EMPTY = {}
 
-controller = ($scope, PhasesService) ->
+controller = ($scope, PhasesService, StepsAPIService) ->
   vm                  = this
   vm.deleteCandidate  = 1
 
@@ -38,21 +38,20 @@ controller = ($scope, PhasesService) ->
       vm[fieldError] = true
       foundErrors = true
 
-
   vm.isValid = ->
     vm.validateField('name')
 
     foundErrors = false
 
-    if vm.nameError or vm.startDateError or vm.dueDateError or vm.endDateError or vm.typeError or vm.statusError
+    if vm.nameError || vm.startDateError || vm.dueDateError || vm.endDateError || vm.typeError || vm.statusError
       foundErrors = true
 
     !foundErrors
 
   activate = ->
     $scope.$watch 'phase', (newPhase) ->
-      vm.phase    = if newPhase == undefined or newPhase == EMPTY then {} else newPhase
-      vm.newRow   = if newPhase == undefined or newPhase == EMPTY then true else false
+      vm.phase    = if newPhase == undefined || newPhase == EMPTY then {} else newPhase
+      vm.newRow   = if newPhase == undefined || newPhase == EMPTY then true else false
       vm.types    = angular.merge {}, PhasesService.getTypes(vm.newRow)
       vm.statuses = angular.merge {}, PhasesService.getStatuses(vm.newRow)
       if vm.newRow
@@ -63,6 +62,6 @@ controller = ($scope, PhasesService) ->
 
   activate()
 
-controller.$inject = ['$scope', 'PhasesService']
+controller.$inject = ['$scope', 'PhasesService', 'StepsAPIService']
 
 angular.module('appirio-tech-ng-manage-phases').controller 'PhaseRowController', controller

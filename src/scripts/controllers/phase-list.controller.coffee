@@ -1,20 +1,28 @@
 'use strict'
 
-controller = ($scope) ->
+controller = ($scope, PhasesService) ->
   vm          = this
-  vm.phases   = $scope.phases
-
-  vm.removePhase = (phase) ->
-    $scope.phases = vm.phases.filter (x) -> x != phase
+  projectId   = $scope.projectId
 
   activate = ->
-  	$scope.$watch 'phases', (newValue) ->
-      vm.phases = newValue
+    getPhases()
 
-    vm
+  vm.removePhase = (phase) ->
+    PhasesService.remove(projectId, phase).then ->
+      getPhases()
+
+  vm.addPhase = (phase) ->
+    PhasesService.remove(projectId, phase).then ->
+      getPhases()
+
+  getPhases = ->
+    PhasesService.get(projectId).then (phases) ->
+      vm.phases = phases
 
   activate()
 
-controller.$inject = ['$scope']
+  vm
+
+controller.$inject = ['$scope', 'PhasesService']
 
 angular.module('appirio-tech-ng-manage-phases').controller 'PhaseListController', controller

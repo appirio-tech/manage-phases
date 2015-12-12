@@ -1,6 +1,6 @@
 'use strict'
 
-PhasesService = ->
+PhasesService = (StepsAPIService) ->
   getTypes = (includePlaceholder) -> 
     placeHolder = if includePlaceholder
       [
@@ -39,12 +39,34 @@ PhasesService = ->
     ]
 
   isPhaseStatusInProgress = (status) ->
-    status > 0 
+    status > 0
+
+  addPhase = (projectId, phase) ->
+    params =
+      projectId: projectId
+      stepId   : stepId
+
+    StepsAPIService.save(params, phase).$promise
+
+  updatePhase = (projectId, phase) ->
+    params =
+      projectId: projectId
+      stepId   : stepId
+
+    StepsAPIService.patch(params, phase).$promise
+
+  removePhase = (projectId, phase) ->
+    params =
+      projectId: projectId
+      stepId   : stepId
+
+    StepsAPIService.remove(params).$promise
 
   getTypes    : getTypes
   getStatuses : getStatuses
   isPhaseStatusInProgress : isPhaseStatusInProgress
 
-PhasesService.$inject = []
+
+PhasesService.$inject = ['StepsAPIService']
 
 angular.module('appirio-tech-ng-manage-phases').factory 'PhasesService', PhasesService

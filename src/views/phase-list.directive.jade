@@ -1,3 +1,13 @@
+h4 ADD A PHASE
+
+hr.biggest
+
+phase-row(add-click="vm.addPhase(phase)")
+
+h4 PROJECT PHASES
+
+hr.biggest
+
 ul
   li
     ul.flex
@@ -20,5 +30,5 @@ ul
         label Phase Status
 
 
-  li(ng-repeat="phase in phases")
+  li(ng-repeat="phase in vm.phases")
     phase-row(phase="phase" remove-click="vm.removePhase(phase)")
