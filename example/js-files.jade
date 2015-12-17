@@ -6,8 +6,8 @@
 - examples.push('example-templates')
 - examples.push('routes')
 - examples.push('phase-row.example')
+- examples.push('new-phase-row.example')
 - examples.push('phase-list.example')
-- examples.push('manage-phases.example')
 
 - var bowers   = []
 
@@ -15,19 +15,25 @@
 - scripts.push('templates')
 - scripts.push('directives/phase-row.directive')
 - scripts.push('directives/phase-list.directive')
-- scripts.push('directives/manage-phases.directive')
+- scripts.push('directives/new-phase-row.directive')
 - scripts.push('controllers/phase-row.controller')
 - scripts.push('controllers/phase-list.controller')
-- scripts.push('controllers/manage-phases.controller')
+- scripts.push('controllers/new-phase-row.controller')
 - scripts.push('services/phases.service')
 
 - bowers.push('zepto/zepto')
 - bowers.push('angular/angular')
+- bowers.push('classnames/index')
+- bowers.push('react/react')
+- bowers.push('react/react-dom')
+- bowers.push('react-input-autosize/dist/react-input-autosize')
+- bowers.push('react-select/dist/react-select')
 - bowers.push('angular-resource/angular-resource')
 - bowers.push('angular-ui-router/release/angular-ui-router')
 - bowers.push('appirio-tech-ng-ui-components/dist/main')
 - bowers.push('appirio-tech-ng-api-services/dist/main')
 - bowers.push('angular-scroll/angular-scroll')
+- bowers.push('ngReact/ngReact')
 
 = "\n"
 // build:js lib.js

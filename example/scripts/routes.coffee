@@ -9,6 +9,12 @@ config = ($stateProvider) ->
     controller  : 'PhaseRowExampleController as vm'
     templateUrl : 'views/phase-row.example.html'
 
+  states['new-phase-row'] =
+    url         : '/new-row'
+    title       : 'new-phase-row'
+    controller  : 'NewPhaseRowExampleController as vm'
+    templateUrl : 'views/new-phase-row.example.html'
+
   states['phase-list'] =
     url         : '/list'
     title       : 'phase-list'

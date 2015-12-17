@@ -1,52 +1,53 @@
 'use strict'
 
-EMPTY = {}
-
-controller = (newPhase, PhasesService, StepsAPIService) ->
-  vm                  = this
-  vm.phase            = if newPhase
-  vm.types            = angular.merge {}, PhasesService.getTypes(true)
-  vm.statuses         = angular.merge {}, PhasesService.getStatuses(true)
-  vm.phase.status     = -1
-  vm.phase.type       = -1
-
-  vm.nameError      = false
-  vm.startDateError = false
-  vm.dueDateError   = false
-  vm.endDateError   = false
-  vm.typeError      = false
-  vm.statusError    = false
+controller = (PhasesService, StepsAPIService) ->
+  this.types            = angular.merge [], PhasesService.getTypes(true)
+  this.statuses         = angular.merge [], PhasesService.getStatuses(true)
 
   activate = ->
-    vm
+    this
 
-  vm.save = ->
-    if vm.isValid()
-      $scope.addClick {phase: vm.phase}
-      $scope.phase = EMPTY
+  this.reset = ->
+    this.phase = {}
+    this.phase.name       = ""
+    this.phase.status     = -1
+    this.phase.type       = -1
 
-  vm.validateField = (field) ->
+    this.nameError      = false
+    this.startDateError = false
+    this.dueDateError   = false
+    this.endDateError   = false
+    this.typeError      = false
+    this.statusError    = false
+
+  this.save = ->
+    if this.isValid()
+      this.addClick {phase: this.phase}
+      this.reset()
+
+  this.validateField = (field) ->
     foundErrors = false
     fieldError  = "#{field}Error"
 
-    if vm.phase[field]?.length
-      vm[fieldError] = false
+    if this.phase[field]?.length
+      this[fieldError] = false
     else
-      vm[fieldError] = true
+      this[fieldError] = true
       foundErrors = true
 
-  vm.isValid = ->
-    vm.validateField('name')
+  this.isValid = ->
+    this.validateField('name')
 
     foundErrors = false
 
-    if vm.nameError || vm.startDateError || vm.dueDateError || vm.endDateError || vm.typeError || vm.statusError
+    if this.nameError || this.startDateError || this.dueDateError || this.endDateError || this.typeError || this.statusError
       foundErrors = true
 
     !foundErrors
 
+  this.reset()
   activate()
 
-controller.$inject = ['newPhase', 'PhasesService', 'StepsAPIService']
+controller.$inject = ['PhasesService', 'StepsAPIService']
 
-angular.module('appirio-tech-ng-manage-phases').controller 'PhaseRowController', controller
+angular.module('appirio-tech-ng-manage-phases').controller 'NewPhaseRowController', controller

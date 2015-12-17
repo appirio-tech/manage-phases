@@ -1,67 +1,51 @@
 'use strict'
 
-EMPTY = {}
+controller = (PhasesService, StepsAPIService) ->
+  this.types            = angular.merge {}, PhasesService.getTypes(false)
+  this.statuses         = angular.merge {}, PhasesService.getStatuses(false)
 
-controller = ($scope, PhasesService, StepsAPIService) ->
-  vm                  = this
-  vm.deleteCandidate  = 1
+  this.phase = this.phase()
+  this.deleteCandidate  = 1
 
-  vm.nameError      = false
-  vm.startDateError = false
-  vm.dueDateError   = false
-  vm.endDateError   = false
-  vm.typeError      = false
-  vm.statusError    = false
+  this.nameError      = false
+  this.startDateError = false
+  this.dueDateError   = false
+  this.endDateError   = false
+  this.typeError      = false
+  this.statusError    = false
 
   activate = ->
-    $scope.$watch 'phase', (newPhase) ->
-      vm.phase    = if newPhase == undefined || newPhase == EMPTY then {} else newPhase
-      vm.newRow   = if newPhase == undefined || newPhase == EMPTY then true else false
-      vm.types    = angular.merge {}, PhasesService.getTypes(vm.newRow)
-      vm.statuses = angular.merge {}, PhasesService.getStatuses(vm.newRow)
-      if vm.newRow
-        vm.phase.status = -1
-        vm.phase.type = -1
+    this
 
-    vm
+  this.isInProgress = ->
+    PhasesService.isPhaseStatusInProgress(this.phase.status)
 
-  vm.isNew = ->
-    vm.newRow
+  this.remove = ->
+    this.removeClick {phase: this.phase}
+    this.deleteCandidate = if this.deleteCandidate == 0 then 1 else 0
 
-  vm.isInProgress = ->
-    PhasesService.isPhaseStatusInProgress(vm.phase.status)
-
-  vm.save = ->
-    if vm.isValid()
-      $scope.addClick {phase: vm.phase}
-      $scope.phase = EMPTY
-
-  vm.remove = ->
-    $scope.removeClick {phase: vm.phase}
-    vm.deleteCandidate = if vm.deleteCandidate == 0 then 1 else 0
-
-  vm.validateField = (field) ->
+  this.validateField = (field) ->
     foundErrors = false
     fieldError  = "#{field}Error"
 
-    if vm.phase[field]?.length
-      vm[fieldError] = false
+    if this.phase[field]?.length
+      this[fieldError] = false
     else
-      vm[fieldError] = true
+      this[fieldError] = true
       foundErrors = true
 
-  vm.isValid = ->
-    vm.validateField('name')
+  this.isValid = ->
+    this.validateField('name')
 
     foundErrors = false
 
-    if vm.nameError || vm.startDateError || vm.dueDateError || vm.endDateError || vm.typeError || vm.statusError
+    if this.nameError || this.startDateError || this.dueDateError || this.endDateError || this.typeError || this.statusError
       foundErrors = true
 
     !foundErrors
 
   activate()
 
-controller.$inject = ['$scope', 'PhasesService', 'StepsAPIService']
+controller.$inject = ['PhasesService', 'StepsAPIService']
 
 angular.module('appirio-tech-ng-manage-phases').controller 'PhaseRowController', controller

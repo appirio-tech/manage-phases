@@ -4,37 +4,37 @@ PhasesService = (StepsAPIService) ->
   getTypes = (includePlaceholder) -> 
     placeHolder = if includePlaceholder
       [
-        name: 'Phase Type'
+        label: 'Phase Type'
         value: -1
       ]
     else
       []
 
     placeHolder.concat [
-      name: 'Project Submitted'
+      label: 'Project Submitted'
       value: 0
     ,
-      name: 'Project Launched'
+      label: 'Project Launched'
       value: 1
     ]
 
   getStatuses = (includePlaceholder) -> 
     placeHolder = if includePlaceholder
       [
-        name: 'Status'
+        label: 'Status'
         value: -1
       ]
     else
       []
 
     placeHolder.concat [
-    	name: 'Scheduled'
+    	label: 'Scheduled'
     	value: 0
     ,
-    	name: 'In Progress'
+    	label: 'In Progress'
     	value: 1
     ,
-    	name: 'Closed'
+    	label: 'Closed'
     	value: 2
     ]
 

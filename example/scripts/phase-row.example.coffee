@@ -22,6 +22,9 @@ controller = ->
 
     vm
 
+  vm.removeClick = ->
+    vm.phase = {}
+
   activate()
 
 controller.$inject = []
