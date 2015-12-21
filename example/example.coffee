@@ -1,6 +1,5 @@
 require 'appirio-tech-api-schemas'
 require './styles/main.scss'
-require './scripts/mock'
 require './scripts/example.module'
 require './scripts/routes'
 require './scripts/new-phase-row.example'
@@ -9,7 +8,7 @@ require './scripts/phase-row.example'
 
 exampleNav = require './nav.jade'
 
-$('#example-nav').html exampleNav()
+document.getElementById('example-nav').innerHTML = exampleNav()
 
 views = require.context './views/', true, /^(.*\.(jade$))[^.]*$/igm
 viewPaths = views.keys()
