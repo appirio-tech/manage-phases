@@ -1,30 +1,35 @@
-loader(ng-show="phaseRowCtrl.loading")
-{{phaseRowCtrl}}
+loader(ng-show="vm.loading")
+{{vm}}
 form.flex.middle(name="phase_row")
   input.name(type="text" 
-             ng-class="{error: phaseRowCtrl.nameError && !phaseRowCtrl.name.length}" 
+             ng-disabled="true"
+             ng-class="{error: vm.nameError && !vm.name.length}" 
              placeholder="Name Phase" 
-             ng-change="phaseRowCtrl.validateField('name')"
-             ng-model="phaseRowCtrl.phase.name")
+             ng-change="vm.validateField('name')"
+             ng-model="vm.phase.name")
 
   date-input(place-holder="Start Date"
-             date="phaseRowCtrl.phase.startDate")
+             date="vm.phase.startDate")
 
   date-input(place-holder="Due Date"
-             date="phaseRowCtrl.phase.dueDate")
+             date="vm.phase.dueDate")
 
   date-input(place-holder="End Date"
-             date="phaseRowCtrl.phase.endDate")
+             date="vm.phase.endDate")
 
-  select(ng-model="phaseRowCtrl.phase.type" 
-         ng-options="type.value as type.name for type in phaseRowCtrl.types"
-         required)
+  dropdown(options="vm.types" 
+           clearable="false"
+           placeholder="Phase [Type]"
+           on-change="vm.onTypeChange" 
+           value="vm.phase.stepType")
 
-  select(ng-model="phaseRowCtrl.phase.status"
-         ng-options="status.value as status.name for status in phaseRowCtrl.statuses"
-         required)
+  dropdown(options="vm.statuses"
+           clearable="false" 
+           disabled="vm.isInProgress()"
+           placeholder="Status"
+           on-change="vm.onStatusChange"
+           value="vm.phase.status")
 
-  button.clean(ng-class='{"hollow":phaseRowCtrl.deleteCandidate===1}' 
-                ng-hide="phaseRowCtrl.isInProgress()" 
-                ng-click="phaseRowCtrl.remove()")
-    .icon.minus
+  button.clean(ng-hide="vm.isInProgress()" 
+               ng-click="vm.remove()")
+    .icon.hollow.minus

@@ -4,10 +4,11 @@ controller = ->
   vm = this
 
   activate = ->
-    {}
+    vm
 
-  vm.addRowClick = (phase) ->
-    vm.phase = {}
+  vm.inner = (phase) ->
+    #alert(phase.name)
+    vm.phase = phase
 
     vm
 

@@ -2,11 +2,10 @@
 
 directive = ->
   restrict    : 'E'
-  controller  : 'PhaseListController'
-  controllerAs: 'phaseListCtrl'
+  scope       : {}
+  controller  : 'PhaseListController as vm'
   templateUrl : 'views/phase-list.directive.html'
-  bindToController: true
-  scope:
+  bindToController: 
     projectId: '@'
     phases:    '='
 

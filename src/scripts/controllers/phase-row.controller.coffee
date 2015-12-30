@@ -1,45 +1,63 @@
 'use strict'
 
 controller = (PhasesService, StepsAPIService) ->
-  this.types            = angular.merge {}, PhasesService.getTypes(false)
-  this.statuses         = angular.merge {}, PhasesService.getStatuses(false)
+  vm            = this
+  vm.phase      = vm.phase()
+  vm.types      = angular.merge [], PhasesService.getTypes(false)
+  vm.statuses   = angular.merge [], PhasesService.getStatuses(false)
 
-  this.phase = this.phase()
-  this.deleteCandidate  = 1
+  #vm.deleteCandidate  = 1
 
-  this.nameError      = false
-  this.startDateError = false
-  this.dueDateError   = false
-  this.endDateError   = false
-  this.typeError      = false
-  this.statusError    = false
+  vm.nameError      = false
+  vm.startDateError = false
+  vm.dueDateError   = false
+  vm.endDateError   = false
+  vm.typeError      = false
+  vm.statusError    = false
 
   activate = ->
-    this
+    vm
 
-  this.isInProgress = ->
-    PhasesService.isPhaseStatusInProgress(this.phase.status)
+  vm.onTypeChange = (changeTo) ->
+    vm.phase.type = changeTo
+    vm.validateField('type', 'dropdown')
 
-  this.remove = ->
-    this.removeClick {phase: this.phase}
-    this.deleteCandidate = if this.deleteCandidate == 0 then 1 else 0
+  vm.onStatusChange = (changeTo) ->
+    vm.phase.status = changeTo
+    vm.validateField('status', 'dropdown')
 
-  this.validateField = (field) ->
+  vm.isInProgress = ->
+    PhasesService.isPhaseStatusInProgress(vm.phase.status)
+
+  vm.remove = ->
+    vm.removeClick({phase: vm.phase})
+    vm.deleteCandidate = if vm.deleteCandidate == 0 then 1 else 0
+
+  vm.validateField = (field, type) ->
     foundErrors = false
     fieldError  = "#{field}Error"
 
-    if this.phase[field]?.length
-      this[fieldError] = false
+    if type == 'dropdown'
+      if vm.phase[field] >= 0
+        vm[fieldError] = false
+      else
+        vm[fieldError] = true
+        foundError = true
     else
-      this[fieldError] = true
-      foundErrors = true
+      if vm.phase[field]?.length
+        vm[fieldError] = false
+      else
+        vm[fieldError] = true
+        foundErrors = true
 
-  this.isValid = ->
-    this.validateField('name')
+  vm.isValid = ->
+    vm.validateField('name')
+    vm.validateField('type', 'dropdown')
+    vm.validateField('status', 'dropdown')
 
     foundErrors = false
 
-    if this.nameError || this.startDateError || this.dueDateError || this.endDateError || this.typeError || this.statusError
+    if vm.nameError || vm.startDateError || vm.dueDateError || vm.endDateError || vm.typeError || vm.statusError
       foundErrors = true
 
     !foundErrors

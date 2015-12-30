@@ -7,8 +7,12 @@ phase-row, new-phase-row {
     width: 162px;
   }
 
-  select, date-input {
+  dropdown, date-input {
     margin-left: 15px;
+  }
+
+  dropdown {
+    width: 162px;
   }
 
   form > button.clean {

@@ -1,53 +1,74 @@
 'use strict'
 
-controller = (PhasesService, StepsAPIService) ->
-  this.types            = angular.merge [], PhasesService.getTypes(true)
-  this.statuses         = angular.merge [], PhasesService.getStatuses(true)
+controller = ($scope, PhasesService, StepsAPIService) ->
+  vm            = this
+  vm.types      = angular.merge [], PhasesService.getTypes(true)
+  vm.statuses   = angular.merge [], PhasesService.getStatuses(true)
 
   activate = ->
-    this
+    vm
 
-  this.reset = ->
-    this.phase = {}
-    this.phase.name       = ""
-    this.phase.status     = -1
-    this.phase.type       = -1
+  reset = ->
+    vm.phase = {}
 
-    this.nameError      = false
-    this.startDateError = false
-    this.dueDateError   = false
-    this.endDateError   = false
-    this.typeError      = false
-    this.statusError    = false
+    vm.phase.name       = ""
+    vm.phase.status     = ''
+    vm.phase.stepType       = ''
 
-  this.save = ->
-    if this.isValid()
-      this.addClick {phase: this.phase}
-      this.reset()
+    vm.nameError      = false
+    vm.startDateError = false
+    vm.dueDateError   = false
+    vm.endDateError   = false
+    vm.typeError      = false
+    vm.statusError    = false
 
-  this.validateField = (field) ->
+  vm.save = ->
+    if vm.isValid()
+      vm.saveRow({phase: vm.phase})
+      reset()
+
+  vm.onTypeChange = (changeTo) ->
+    vm.phase.type = changeTo
+    #vm.types = PhasesService.getTypes(false) if vm.phase.type >= 0 
+    vm.validateField('type', 'dropdown')
+
+  vm.onStatusChange = (changeTo) ->
+    vm.phase.status = changeTo
+    #vm.statuses     = PhasesService.getTypes(false) if vm.phase.status >= 0
+    vm.validateField('status', 'dropdown')
+
+  vm.validateField = (field, type) ->
     foundErrors = false
     fieldError  = "#{field}Error"
 
-    if this.phase[field]?.length
-      this[fieldError] = false
+    if type == 'dropdown'
+      if vm.phase[field] >= 0
+        vm[fieldError] = false
+      else
+        vm[fieldError] = true
+        foundError = true
     else
-      this[fieldError] = true
-      foundErrors = true
+      if vm.phase[field]?.length
+        vm[fieldError] = false
+      else
+        vm[fieldError] = true
+        foundErrors = true
 
-  this.isValid = ->
-    this.validateField('name')
+  vm.isValid = ->
+    vm.validateField('name')
+    vm.validateField('type', 'dropdown')
+    vm.validateField('status', 'dropdown')
 
     foundErrors = false
 
-    if this.nameError || this.startDateError || this.dueDateError || this.endDateError || this.typeError || this.statusError
+    if vm.nameError || vm.startDateError || vm.dueDateError || vm.endDateError || vm.typeError || vm.statusError
       foundErrors = true
 
     !foundErrors
 
-  this.reset()
+  reset()
   activate()
 
-controller.$inject = ['PhasesService', 'StepsAPIService']
+controller.$inject = ['$scope', 'PhasesService', 'StepsAPIService']
 
 angular.module('appirio-tech-ng-manage-phases').controller 'NewPhaseRowController', controller

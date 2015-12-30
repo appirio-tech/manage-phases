@@ -5,14 +5,14 @@ controller = ->
   vm.phases = []
 
   activate = ->
-    for i in [0..5]
+    for i in [0..3]
       vm.phases.push
         name     : 'batman ' + i
         startDate: '2015-12-01'
         endDate  : '2015-12-01'
         dueDate  : '2015-12-01'
-        type     : 'a'
-        status   : 'b'
+        type     : 1
+        status   : 2
 
     vm
 

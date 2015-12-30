@@ -2,7 +2,7 @@ h4 ADD A PHASE
 
 hr.biggest
 
-new-phase-row(add-click="vm.addPhase(phase)")
+new-phase-row(save-row="vm.addPhase(phase)")
 
 h4 PROJECT PHASES
 
@@ -29,5 +29,5 @@ ul
       li.status
         label Phase Status
 
-  li(ng-repeat="phase in phaseListCtrl.phases")
+  li(ng-repeat="phase in vm.phases")
     phase-row(phase="phase" remove-click="vm.removePhase(phase)")

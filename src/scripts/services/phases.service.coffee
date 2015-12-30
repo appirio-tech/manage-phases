@@ -1,70 +1,96 @@
 'use strict'
 
 PhasesService = (StepsAPIService) ->
-  getTypes = (includePlaceholder) -> 
-    placeHolder = if includePlaceholder
-      [
-        label: 'Phase Type'
-        value: -1
-      ]
-    else
-      []
+  phases = []
 
-    placeHolder.concat [
+  getTypes = -> 
+    [
       label: 'Project Submitted'
-      value: 0
+      value: 'projectSubmitted'
+      id   : 1
     ,
       label: 'Project Launched'
-      value: 1
+      value: 'projectLaunched'
+      id   : 2
+    ,
+      label: 'Design Concepts'
+      value: 'designConcepts'
+      id   : 3 
+    ,
+      label: 'Final Designs'
+      value: 'completeDesigns'
+      id   : 4
+    ,
+      label: 'Final Fixes'
+      value: 'finalFixes'
+      id   : 5
+    ,
+      label: 'Development'
+      value: 'code'
+      id   : 6
     ]
 
-  getStatuses = (includePlaceholder) -> 
-    placeHolder = if includePlaceholder
-      [
-        label: 'Status'
-        value: -1
-      ]
-    else
-      []
-
-    placeHolder.concat [
-    	label: 'Scheduled'
-    	value: 0
+  getStatuses = -> 
+    [
+      label: 'Scheduled'
+      value: 'SCHEDULED'
+      id   : 1
     ,
-    	label: 'In Progress'
-    	value: 1
+      label: 'In Progress'
+      value: 'OPEN'
+      id   : 2
     ,
-    	label: 'Closed'
-    	value: 2
+      label: 'Closed'
+      value: 'CLOSED'
+      id   : 3
     ]
 
   isPhaseStatusInProgress = (status) ->
-    status > 0
+    status == 'OPEN' || status == 'CLOSED'
+
+  get = (projectId) ->
+    #phases
+
+    params = 
+      projectId: projectId
+
+    StepsAPIService.query(params).$promise
+      
 
   addPhase = (projectId, phase) ->
-    params =
-      projectId: projectId
-      stepId   : stepId
+    phases.push phase    
 
-    StepsAPIService.save(params, phase).$promise
+    # params =
+    #   projectId: projectId
+    #   stepId   : stepId
+
+    # StepsAPIService.save(params, phase).$promise
 
   updatePhase = (projectId, phase) ->
-    params =
-      projectId: projectId
-      stepId   : stepId
+    phases = phases.filter (x) -> x.id != phase.id
+    phases.push phase
 
-    StepsAPIService.patch(params, phase).$promise
+    # params =
+    #   projectId: projectId
+    #   stepId   : stepId
+
+    # StepsAPIService.patch(params, phase).$promise
 
   removePhase = (projectId, phase) ->
-    params =
-      projectId: projectId
-      stepId   : stepId
+    phases = phases.filter (x) -> x.id != phase.id
+    # params =
+    #   projectId: projectId
+    #   stepId   : stepId
 
-    StepsAPIService.remove(params).$promise
+    # StepsAPIService.remove(params).$promise
 
   getTypes    : getTypes
   getStatuses : getStatuses
   isPhaseStatusInProgress : isPhaseStatusInProgress
+  get                     : get
+  addPhase                : addPhase
+  removePhase             : removePhase
+  updatePhase             : updatePhase
 
 
 PhasesService.$inject = ['StepsAPIService']
