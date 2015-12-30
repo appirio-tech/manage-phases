@@ -1,6 +1,3 @@
-require.context './styles/', true, /^(.*\.(scss$))[^.]*$/igm
-# require.context './images/', true, /^(.*\.(svg$))[^.]*$/igm
-
 require 'appirio-tech-ng-ui-components'
 require 'appirio-tech-ng-api-services'
 require './scripts/manage-phases.module'
@@ -11,9 +8,11 @@ requireContextFiles = (files) ->
   for path in paths
     files path
 
+styles      = require.context './styles/', true, /^(.*\.(scss$))[^.]*$/igm
 directives  = require.context './scripts/directives/', true, /^(.*\.(coffee$))[^.]*$/igm
 controllers = require.context './scripts/controllers/', true, /^(.*\.(coffee$))[^.]*$/igm
 
+requireContextFiles styles
 requireContextFiles directives
 requireContextFiles controllers
 
