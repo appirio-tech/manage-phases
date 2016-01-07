@@ -1,14 +1,18 @@
 @import "work/work-includes";
 
-phase-row {
+phase-row, new-phase-row {
   display: block;
 
   .name {
     width: 162px;
   }
 
-  select, date-input {
+  dropdown, date-input {
     margin-left: 15px;
+  }
+
+  dropdown {
+    width: 162px;
   }
 
   form > button.clean {

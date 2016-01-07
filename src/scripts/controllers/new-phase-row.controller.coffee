@@ -1,37 +1,41 @@
 'use strict'
 
-controller = (PhasesService, StepsAPIService) ->
+controller = ($scope, PhasesService, StepsAPIService) ->
   vm            = this
-  vm.phase      = vm.phase()
-  vm.types      = angular.merge [], PhasesService.getTypes(false)
-  vm.statuses   = angular.merge [], PhasesService.getStatuses(false)
-
-  #vm.deleteCandidate  = 1
-
-  vm.nameError      = false
-  vm.startDateError = false
-  vm.dueDateError   = false
-  vm.endDateError   = false
-  vm.typeError      = false
-  vm.statusError    = false
+  vm.types      = angular.merge [], PhasesService.getTypes(true)
+  vm.statuses   = angular.merge [], PhasesService.getStatuses(true)
 
   activate = ->
     vm
 
+  reset = ->
+    vm.phase = {}
+
+    vm.phase.name       = ""
+    vm.phase.status     = ''
+    vm.phase.stepType       = ''
+
+    vm.nameError      = false
+    vm.startDateError = false
+    vm.dueDateError   = false
+    vm.endDateError   = false
+    vm.typeError      = false
+    vm.statusError    = false
+
+  vm.save = ->
+    if vm.isValid()
+      vm.saveRow({phase: vm.phase})
+      reset()
+
   vm.onTypeChange = (changeTo) ->
     vm.phase.type = changeTo
+    #vm.types = PhasesService.getTypes(false) if vm.phase.type >= 0 
     vm.validateField('type', 'dropdown')
 
   vm.onStatusChange = (changeTo) ->
     vm.phase.status = changeTo
+    #vm.statuses     = PhasesService.getTypes(false) if vm.phase.status >= 0
     vm.validateField('status', 'dropdown')
-
-  vm.isInProgress = ->
-    PhasesService.isPhaseStatusInProgress(vm.phase.status)
-
-  vm.remove = ->
-    vm.removeClick({phase: vm.phase})
-    vm.deleteCandidate = if vm.deleteCandidate == 0 then 1 else 0
 
   vm.validateField = (field, type) ->
     foundErrors = false
@@ -62,8 +66,9 @@ controller = (PhasesService, StepsAPIService) ->
 
     !foundErrors
 
+  reset()
   activate()
 
-controller.$inject = ['PhasesService', 'StepsAPIService']
+controller.$inject = ['$scope', 'PhasesService', 'StepsAPIService']
 
-angular.module('appirio-tech-ng-manage-phases').controller 'PhaseRowController', controller
+angular.module('appirio-tech-ng-manage-phases').controller 'NewPhaseRowController', controller

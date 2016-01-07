@@ -1,3 +1,13 @@
+h4 ADD A PHASE
+
+hr.biggest
+
+new-phase-row(save-row="vm.addPhase(phase)")
+
+h4 PROJECT PHASES
+
+hr.biggest
+
 ul
   li
     ul.flex
@@ -13,12 +23,11 @@ ul
       li.date
         label End Date
 
-      li
+      li.type
         label Phase Type
 
-      li
+      li.status
         label Phase Status
 
-
-  li(ng-repeat="phase in phases")
-    phase-row(phase="phase")
+  li(ng-repeat="phase in vm.phases")
+    phase-row(phase="phase" remove-click="vm.removePhase(phase)")

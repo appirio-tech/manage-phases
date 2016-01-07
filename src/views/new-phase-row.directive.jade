@@ -1,8 +1,7 @@
 loader(ng-show="vm.loading")
-{{vm}}
+
 form.flex.middle(name="phase_row")
   input.name(type="text" 
-             ng-disabled="true"
              ng-class="{error: vm.nameError && !vm.name.length}" 
              placeholder="Name Phase" 
              ng-change="vm.validateField('name')"
@@ -19,17 +18,17 @@ form.flex.middle(name="phase_row")
 
   dropdown(options="vm.types" 
            clearable="false"
-           placeholder="Phase [Type]"
+           placeholder="Phase  [Type]"
+           ng-class="{error: vm.typeError}"
            on-change="vm.onTypeChange" 
            value="vm.phase.stepType")
 
   dropdown(options="vm.statuses"
-           clearable="false" 
-           disabled="vm.isInProgress()"
+           clearable="false"
            placeholder="Status"
+           ng-class="{error: vm.statusError}"
            on-change="vm.onStatusChange"
            value="vm.phase.status")
-
-  button.clean(ng-hide="vm.isInProgress()" 
-               ng-click="vm.remove()")
-    .icon.hollow.minus
+  
+  button.clean(ng-click="vm.save()")
+    .icon.plus.hollow

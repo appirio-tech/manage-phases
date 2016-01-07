@@ -8,11 +8,22 @@ controller = ->
       name     : 'batman'
       startDate: '2015-12-01'
       endDate  : '2015-12-01'
+      dueDate: '2015-12-01'
+      type     : 1
+      status   : 0
+
+    vm.phaseInactive =
+      name     : 'batman'
       startDate: '2015-12-01'
-      type     : 'a'
-      status   : 'b'
+      endDate  : '2015-12-01'
+      dueDate: '2015-12-01'
+      type     : 1
+      status   : 1      
 
     vm
+
+  vm.removeClick = ->
+    vm.phase = {}
 
   activate()
 
