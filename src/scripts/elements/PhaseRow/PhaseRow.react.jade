@@ -1,0 +1,33 @@
+- require('./PhaseRow.scss')
+- DateTime = require('react-datetime')
+
+form.PhaseRow.flex.middle
+  if loading
+    loader
+
+  input.name(value=data.name)
+
+  //- date-input
+
+  //- date-input(place-holder="Due Date"
+  //-            date="vm.phase.dueDate")
+
+  //- date-input(place-holder="End Date"
+  //-            date="vm.phase.endDate")
+
+  //- dropdown(options="vm.types" 
+  //-          clearable="false"
+  //-          placeholder="Phase  [Type]"
+  //-          ng-class="{error: vm.typeError}"
+  //-          on-change="vm.onTypeChange" 
+  //-          value="vm.phase.stepType")
+
+  //- dropdown(options="vm.statuses"
+  //-          clearable="false"
+  //-          placeholder="Status"
+  //-          ng-class="{error: vm.statusError}"
+  //-          on-change="vm.onStatusChange"
+  //-          value="vm.phase.status")
+  
+  //- button.clean(ng-click="vm.save()")
+  //-   .icon.plus.hollow

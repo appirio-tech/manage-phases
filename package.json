@@ -8,8 +8,9 @@
   },
   "dependencies": {
     "appirio-styles": "0.x.x",
+    "appirio-tech-ng-api-services": "1.x.x",
     "appirio-tech-ng-ui-components": "2.x.x",
-    "appirio-tech-ng-api-services": "1.x.x"
+    "react-datetime": "^2.0.2"
   },
   "scripts": {
     "dev": "webpack-dev-server -d --colors",
