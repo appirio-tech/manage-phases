@@ -3,81 +3,88 @@
 require './PhaseRow.scss'
 require 'react-datetime/css/react-datetime.css'
 
-React    = require 'react'
-DateTime = require 'react-datetime'
-Select   = require 'react-select'
+React      = require 'react'
+DateTime   = require 'react-datetime'
+Select     = require 'react-select'
+classNames = require 'classnames'
 
 types = [
   label: 'Project Submitted'
-  value: 'projectSubmitted'
-  id   : 1
+  value: 'PROJECT_SUBMITTED'
 ,
   label: 'Project Launched'
-  value: 'projectLaunched'
-  id   : 2
+  value: 'PROJECT_LAUNCHED'
 ,
   label: 'Design Concepts'
-  value: 'designConcepts'
-  id   : 3
+  value: 'DESIGN_CONCEPTS'
 ,
   label: 'Final Designs'
-  value: 'completeDesigns'
-  id   : 4
+  value: 'FINAL_DESIGNS'
 ,
   label: 'Final Fixes'
-  value: 'finalFixes'
-  id   : 5
+  value: 'FINAL_FIXES'
 ,
   label: 'Development'
-  value: 'code'
-  id   : 6
+  value: 'DEVELOPMENT'
 ]
 
 statuses = [
   label: 'Scheduled'
   value: 'SCHEDULED'
-  id   : 1
 ,
   label: 'In Progress'
   value: 'OPEN'
-  id   : 2
 ,
   label: 'Closed'
   value: 'CLOSED'
-  id   : 3
 ]
 
-component = ({data}) ->
+component = ({data, state}) ->
   loader = <loader />
-  loader = null
+  loader = ''
+  showPicker = null
+
+  submitClassNames = classNames
+    'icon'  : true
+    'hollow': true
+    'plus'  : state != 'edit'
+    'minus' : state == 'edit'
+
+  phaseType = <Select
+    className   = "types"
+    options     = {types}
+    clearable   = false
+    placeholder = "Phase Type"
+    value       = {data.type}
+  />
+
+  if state == 'edit'
+    phaseType = <p className="types">{data.status}</p>
 
   <form className="PhaseRow flex middle">
     { loader }
 
-    <input className="name" value={data.name} />
+    <input type="text" className="name" placeholder="Name Phase" value={data.name} />
 
-    <DateTime />
+    <DateTime className="DateTime" open={showPicker} />
 
-    <Select
-      options={types}
-      clearable=false
-      placeholder="Phase Type"
-      value={data.stepType}
-    />
+    {phaseType}
 
     <Select
-      options={statuses}
-      clearable=false
-      placeholder="Status"
-      value={data.stepStatus}
+      className   = "statuses"
+      options     = {statuses}
+      clearable   = false
+      placeholder = "Status"
+      value       = {data.status}
     />
 
-    <button className="clean">
-      <div className="icon plus hollow" />
+    <button className="clean" type="submit">
+      <div className={submitClassNames} />
     </button>
   </form>
 
 component.propTypes =
-  data: React.PropTypes.object
+  data : React.PropTypes.object
+  state: React.PropTypes.string
 
 module.exports = component
