@@ -2,6 +2,7 @@
 
 require './PhaseRow.scss'
 require 'react-datetime/css/react-datetime.css'
+require 'react-select/dist/react-select.css'
 
 React      = require 'react'
 DateTime   = require 'react-datetime'
