@@ -56,18 +56,22 @@ component = ({data, state}) ->
     options     = {types}
     clearable   = false
     placeholder = "Phase Type"
-    value       = {data.type}
+    value       = {data?.type}
   />
 
   if state == 'edit'
-    phaseType = <p className="types">{data.status}</p>
+    phaseType = <p className="types">{data?.status}</p>
 
   <form className="PhaseRow flex middle">
     { loader }
 
-    <input type="text" className="name" placeholder="Name Phase" value={data.name} />
+    <input type="text" className="name" placeholder="Name Phase" value={data?.name} />
 
-    <DateTime className="DateTime" open={showPicker} />
+    <DateTime placeholder="start date" className="DateTime" value={data?.startDate} open={showPicker} />
+
+    <DateTime placeholder="due date" className="DateTime" value={data?.dueDate} open={showPicker} />
+
+    <DateTime placeholder="end date" className="DateTime" value={data?.endDate} open={showPicker} />
 
     {phaseType}
 
@@ -76,7 +80,7 @@ component = ({data, state}) ->
       options     = {statuses}
       clearable   = false
       placeholder = "Status"
-      value       = {data.status}
+      value       = {data?.status}
     />
 
     <button className="clean" type="submit">

@@ -21,9 +21,13 @@ phase2 =
 
 component = ->
   <div className="PhaseRowExample">
+    <h1>Example with state edit</h1>
+
     <PhaseRow data={phase1} state="edit" />
 
-    <PhaseRow data={phase2} state=null />
+    <h1> Example with no data or state</h1>
+
+    <PhaseRow/>
   </div>
 
 

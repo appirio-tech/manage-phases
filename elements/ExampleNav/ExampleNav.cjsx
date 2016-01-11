@@ -10,11 +10,11 @@ classNames = require 'classnames'
 component = ({data, state}) ->
   <ul className="ExampleNav">
     <li>
-      <Link to="/">ManagePhases</Link>
+      <Link to="/">ManagePhases Examples</Link>
     </li>
 
     <li>
-      <Link to="/PhaseRowExamples">PhaseRowExamples</Link>
+      <Link to="/PhaseRowExamples">PhaseRow Examples</Link>
     </li>
   </ul>
 
