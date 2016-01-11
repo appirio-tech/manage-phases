@@ -1,7 +1,7 @@
 {
   "name": "appirio-tech-ng-manage-steps",
   "version": "0.0.0",
-  "main": "./src/src.coffee",
+  "main": "./index.coffee",
   "devDependencies": {
     "appirio-tech-webpack-config": "0.x.x",
     "npm-prepublish": "^1.2.1"
