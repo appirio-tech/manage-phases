@@ -1,4 +1,4 @@
 module.exports =
-  PhaseRow    : require './elements/PhaseRow/PhaseRow.cjsx'
-  ManagePhases: require './elements/ManagePhases/ManagePhases.cjsx'
+  PhaseRow    : require './components/PhaseRow/PhaseRow.cjsx'
+  ManagePhases: require './components/ManagePhases/ManagePhases.cjsx'
 
