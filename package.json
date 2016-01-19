@@ -4,12 +4,19 @@
   "main": "./src/src.coffee",
   "devDependencies": {
     "appirio-tech-webpack-config": "0.x.x",
+    "history": "^1.17.0",
+    "react-router": "^1.0.3",
     "npm-prepublish": "^1.2.1"
   },
   "dependencies": {
     "appirio-styles": "0.x.x",
     "appirio-tech-ng-ui-components": "2.x.x",
+<<<<<<< Updated upstream
     "appirio-tech-ng-api-services": "1.x.x"
+=======
+    "react-datetime": "^2.0.2",
+    "react-select": "^0.9.1"
+>>>>>>> Stashed changes
   },
   "scripts": {
     "dev": "webpack-dev-server -d --colors",
