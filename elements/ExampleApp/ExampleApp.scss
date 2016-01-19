@@ -1,0 +1,16 @@
+@import "work/work-styles";
+
+body {
+  background-color: $grey-lighter;
+  padding: 15px;
+
+  .invisible {
+    opacity: .3;
+    visibility: visible;
+  }
+
+  h1 {
+    margin: 80px 0;
+    text-align: center;
+  }
+}

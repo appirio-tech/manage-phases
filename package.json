@@ -1,7 +1,7 @@
 {
   "name": "appirio-tech-ng-manage-steps",
   "version": "0.0.0",
-  "main": "./src/src.coffee",
+  "main": "./index.coffee",
   "devDependencies": {
     "appirio-tech-webpack-config": "0.x.x",
     "history": "^1.17.0",
@@ -10,13 +10,21 @@
   },
   "dependencies": {
     "appirio-styles": "0.x.x",
+    "appirio-tech-ng-api-services": "1.x.x",
     "appirio-tech-ng-ui-components": "2.x.x",
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     "appirio-tech-ng-api-services": "1.x.x"
 =======
     "react-datetime": "^2.0.2",
     "react-select": "^0.9.1"
 >>>>>>> Stashed changes
+=======
+    "history": "^1.17.0",
+    "react-datetime": "^2.0.2",
+    "react-router": "^1.0.3",
+    "react-select": "^0.9.1"
+>>>>>>> 11e5ecc13438f07fa604a508dd720cf8cdcb93be
   },
   "scripts": {
     "dev": "webpack-dev-server -d --colors",
