@@ -5,11 +5,13 @@ ExampleApp           = require '../ExampleApp/ExampleApp.cjsx'
 Router               = require '../Router/Router.cjsx'
 ManagePhasesExamples = require '../ManagePhases/ManagePhasesExamples.cjsx'
 PhaseRowExamples     = require '../PhaseRow/PhaseRowExamples.cjsx'
+history              = require('history/lib/createBrowserHistory')()
 
-{ Router, Route, Link, IndexRoute, browserHistory } = require 'react-router'
+
+{ Router, Route, IndexRoute } = require 'react-router'
 
 component = ->
-  <Router history={browserHistory}>
+  <Router history={history}>
     <Route path="/" component={ExampleApp}>
       <IndexRoute component={ManagePhasesExamples}/>
 
