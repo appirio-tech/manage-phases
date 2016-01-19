@@ -1,7 +1,7 @@
 'use strict'
 
 React    = require 'react'
-PhaseRow = require '../PhaseRow/PhaseRow.cjsx'
+PhaseRow = require './PhaseRow.cjsx'
 
 phase1 =
   name     : 'batman'

@@ -3,7 +3,7 @@
 require './ManagePhasesExamples.scss'
 
 React        = require 'react'
-ManagePhases = require '../ManagePhases/ManagePhases.cjsx'
+ManagePhases = require './ManagePhases.cjsx'
 
 phases = [
   name     : 'batman'

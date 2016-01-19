@@ -3,8 +3,8 @@
 React                = require 'react'
 ExampleApp           = require '../ExampleApp/ExampleApp.cjsx'
 Router               = require '../Router/Router.cjsx'
-ManagePhasesExamples = require '../ManagePhasesExamples/ManagePhasesExamples.cjsx'
-PhaseRowExamples     = require '../PhaseRowExamples/PhaseRowExamples.cjsx'
+ManagePhasesExamples = require '../ManagePhases/ManagePhasesExamples.cjsx'
+PhaseRowExamples     = require '../PhaseRow/PhaseRowExamples.cjsx'
 
 { Router, Route, Link, IndexRoute, browserHistory } = require 'react-router'
 
