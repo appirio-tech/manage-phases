@@ -1,24 +1,24 @@
 'use strict'
 
-require './ManagePhases.scss'
+require './ManageSteps.scss'
 
 React      = require 'react'
 classNames = require 'classnames'
-PhaseRow   = require '../PhaseRow/PhaseRow.cjsx'
+StepRow   = require '../StepRow/StepRow.cjsx'
 
 component = ({data, state}) ->
-  <div className="ManagePhases">
-    <div className="add-a-phase">
-      <h5>add a phase</h5>
+  <div className="ManageSteps">
+    <div className="add-a-Step">
+      <h5>add a Step</h5>
 
       <hr  />
 
-      <PhaseRow />
+      <StepRow />
     </div>
 
-    <div className="project-phases">
+    <div className="project-Steps">
       <header className="flex space-between middle">
-        <h5>project phases</h5>
+        <h5>project Steps</h5>
 
         <button className="action">Update</button>
       </header>
@@ -26,9 +26,9 @@ component = ({data, state}) ->
       <hr  />
 
       {
-        headers = ['Phase Name', 'Start Date', 'Due Date', 'End Date', 'Phase Type', 'Phase Status']
+        headers = ['Step Name', 'Start Date', 'Due Date', 'End Date', 'Step Type', 'Step Status']
 
-        if data?.phases?.length
+        if data?.Steps?.length
           <div>
             <ul className="column-headers flex center">
               {
@@ -37,17 +37,17 @@ component = ({data, state}) ->
               }
             </ul>
 
-            <ul className="phases">
+            <ul className="Steps">
               {
-                data?.phases?.map (phase) ->
+                data?.Steps?.map (Step) ->
                   <li>
-                    <PhaseRow data={phase} state="edit" />
+                    <StepRow data={Step} state="edit" />
                   </li>
               }
             </ul>
           </div>
         else
-          <p>Add Phases above to layout your project schedule.</p>
+          <p>Add Steps above to layout your project schedule.</p>
       }
     </div>
   </div>

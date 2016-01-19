@@ -1,11 +1,11 @@
 'use strict'
 
-require './ManagePhasesExamples.scss'
+require './ManageStepsExamples.scss'
 
 React        = require 'react'
-ManagePhases = require './ManagePhases.cjsx'
+ManageSteps = require './ManageSteps.cjsx'
 
-phases = [
+Steps = [
   name     : 'batman'
   startDate: '2015-12-01'
   endDate  : '2015-12-01'
@@ -29,14 +29,14 @@ phases = [
 ]
 
 component = ->
-  <div className="ManagePhasesExamples light-bg">
+  <div className="ManageStepsExamples light-bg">
     <h1>Example with data</h1>
 
-    <ManagePhases data={phases: phases} />
+    <ManageSteps data={Steps: Steps} />
 
     <h1>Example with no data</h1>
 
-    <ManagePhases />
+    <ManageSteps />
   </div>
 
 

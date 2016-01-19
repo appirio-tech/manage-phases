@@ -1,6 +1,6 @@
 'use strict'
 
-require './PhaseRow.scss'
+require './StepRow.scss'
 require 'react-datetime/css/react-datetime.css'
 require 'react-select/dist/react-select.css'
 
@@ -51,21 +51,21 @@ component = ({data, state}) ->
     'plus'  : state != 'edit'
     'minus' : state == 'edit'
 
-  phaseType = <Select
+  StepType = <Select
     className   = "types"
     options     = {types}
     clearable   = false
-    placeholder = "Phase Type"
+    placeholder = "Step Type"
     value       = {data?.type}
   />
 
   if state == 'edit'
-    phaseType = <p className="types">{data?.status}</p>
+    StepType = <p className="types">{data?.status}</p>
 
-  <form className="PhaseRow flex middle">
+  <form className="StepRow flex middle">
     { loader }
 
-    <input type="text" className="name" placeholder="Name Phase" value={data?.name} />
+    <input type="text" className="name" placeholder="Name Step" value={data?.name} />
 
     <DateTime placeholder="start date" className="DateTime" value={data?.startDate} open={showPicker} />
 
@@ -73,7 +73,7 @@ component = ({data, state}) ->
 
     <DateTime placeholder="end date" className="DateTime" value={data?.endDate} open={showPicker} />
 
-    {phaseType}
+    {StepType}
 
     <Select
       className   = "statuses"

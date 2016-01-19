@@ -3,8 +3,8 @@
 React                = require 'react'
 ExampleApp           = require '../ExampleApp/ExampleApp.cjsx'
 Router               = require '../Router/Router.cjsx'
-ManagePhasesExamples = require '../ManagePhases/ManagePhasesExamples.cjsx'
-PhaseRowExamples     = require '../PhaseRow/PhaseRowExamples.cjsx'
+ManageStepsExamples = require '../ManageSteps/ManageStepsExamples.cjsx'
+StepRowExamples     = require '../StepRow/StepRowExamples.cjsx'
 history              = require('history/lib/createBrowserHistory')()
 
 
@@ -13,9 +13,9 @@ history              = require('history/lib/createBrowserHistory')()
 component = ->
   <Router history={history}>
     <Route path="/" component={ExampleApp}>
-      <IndexRoute component={ManagePhasesExamples}/>
+      <IndexRoute component={ManageStepsExamples}/>
 
-      <Route path="PhaseRowExamples" component={PhaseRowExamples} />
+      <Route path="StepRowExamples" component={StepRowExamples} />
     </Route>
   </Router>
 

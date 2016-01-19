@@ -1,9 +1,9 @@
 'use strict'
 
 React    = require 'react'
-PhaseRow = require './PhaseRow.cjsx'
+StepRow = require './StepRow.cjsx'
 
-phase1 =
+Step1 =
   name     : 'batman'
   startDate: '2015-12-01'
   endDate  : '2015-12-01'
@@ -11,7 +11,7 @@ phase1 =
   type     : 'PROJECT_LAUNCHED'
   status   : 'OPEN'
 
-phase2 =
+Step2 =
   name     : 'batman'
   startDate: '2015-12-01'
   endDate  : '2015-12-01'
@@ -20,14 +20,14 @@ phase2 =
   status   : 'OPEN'
 
 component = ->
-  <div className="PhaseRowExample">
+  <div className="StepRowExample">
     <h1>Example with state edit</h1>
 
-    <PhaseRow data={phase1} state="edit" />
+    <StepRow data={Step1} state="edit" />
 
     <h1> Example with no data or state</h1>
 
-    <PhaseRow/>
+    <StepRow/>
   </div>
 
 

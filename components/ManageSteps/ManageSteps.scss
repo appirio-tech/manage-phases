@@ -1,11 +1,11 @@
 @import "work/work-includes";
 
-.ManagePhases {
+.ManageSteps {
   h5 {
     font-weight: bold;
   }
 
-  .PhaseRow {
+  .StepRow {
     @include justify-content(center);
   }
 
@@ -14,7 +14,7 @@
     margin: 20px 0 30px 0;
   }
 
-  .project-phases {
+  .project-Steps {
     margin-top: 60px;
 
     > header {
@@ -49,7 +49,7 @@
       }
     }
 
-    .phases {
+    .Steps {
       > li {
         margin-top: 25px;
       }
