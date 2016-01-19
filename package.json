@@ -17,8 +17,8 @@
     "react-select": "^0.9.1"
   },
   "scripts": {
-    "dev": "webpack-dev-server -d --colors",
-    "clean": "rm -r dist",
-    "build": "webpack --config webpack.config.js; cp example/index.html dist/"
+    "example": "webpack-dev-server -d --colors --progress --inline",
+    "dev": "webpack-dev-server -d --colors --progress --inline --dev",
+    "clean": "rm -r dist"
   }
 }
