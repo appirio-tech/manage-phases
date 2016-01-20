@@ -3,7 +3,7 @@
 require './ManageStepsExamples.scss'
 
 React        = require 'react'
-ManageSteps = require './ManageSteps.cjsx'
+ManageSteps = require './ManageSteps.coffee'
 
 Steps = [
   name     : 'batman'
@@ -32,11 +32,11 @@ component = ->
   <div className="ManageStepsExamples light-bg">
     <h1>Example with data</h1>
 
-    <ManageSteps data={Steps: Steps} />
+    <ManageSteps projectId="1435677908878-f5e91b34-9ea1-407d-b882-0022ea2de0da" />
 
     <h1>Example with no data</h1>
 
-    <ManageSteps />
+    <ManageSteps projectId="abc" />
   </div>
 
 
