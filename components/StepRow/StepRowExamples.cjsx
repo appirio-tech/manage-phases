@@ -1,7 +1,7 @@
 'use strict'
 
 React    = require 'react'
-StepRow = require './StepRow.cjsx'
+StepRow = require './StepRow.coffee'
 
 Step1 =
   name     : 'batman'
@@ -23,7 +23,7 @@ component = ->
   <div className="StepRowExample">
     <h1>Example with state edit</h1>
 
-    <StepRow data={Step1} state="edit" />
+    <StepRow projectId="abc" state="edit" />
 
     <h1> Example with no data or state</h1>
 

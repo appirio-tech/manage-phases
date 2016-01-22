@@ -11,19 +11,20 @@ ManageSteps = React.createClass
     projectId: React.PropTypes.string.isRequired
 
   componentWillMount: ->
-    this.props.loadProject this.props.projectId
-    this.props.loadStepsByProject this.props.projectId
+    { loadProject, loadStepsByProject, projectId } = this.props
+
+    loadProject projectId
+    loadStepsByProject projectId
 
   render: ->
-    React.createElement ManageStepsView
+    React.createElement ManageStepsView, this.props
 
 mapStateToProps = (state, ownProps) ->
-  id    = ownProps.projectId
-  steps = state.stepsByProject[id]?.items?.map (stepId) ->
-    state.entities.steps[stepId]
+  id = ownProps.projectId
 
-  project: state.entities.projects[id]
-  steps: steps || []
+  projectId: id
+  stepIds: state.stepsByProject[id]?.items || []
+  fetching: state.stepsByProject[id]?.isFetching
 
 actionsToBind = {
   loadProject
