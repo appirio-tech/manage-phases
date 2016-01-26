@@ -33,12 +33,12 @@ StepRow = React.createClass
       loadStep projectId, stepId
 
   submit: (values) ->
-    { isNew, projectId, stepId, createStep, updateStep } = this.props
+    { isNew, projectId, stepId, createStep, updateStep, resetForm, initializeForm } = this.props
 
     if isNew
-      createStep(projectId, values)
+      createStep(projectId, values).then( () => resetForm() )
     else
-      updateStep(projectId, stepId, values)
+      updateStep(projectId, stepId, values).then( () => initializeForm(values) )
 
   render: ->
     props = Object.assign {}, this.props,
@@ -51,7 +51,6 @@ formProps =
   fields: fields
 
 mapStateToProps = (state, ownProps) ->
-  console.log 'mapStateToProps'
   initialValues: state.entities.steps[ownProps.stepId]
 
 actionsToBind = {

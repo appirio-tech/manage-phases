@@ -47,6 +47,7 @@ component = ({projectId, stepIds, fetching}) ->
               }
             </ul>
           </div>
+
         else if fetching
           <p>Getting steps</p>
 

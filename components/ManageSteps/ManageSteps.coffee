@@ -3,31 +3,34 @@
 React                  = require 'react'
 ManageStepsView        = require './ManageStepsView'
 { connect }            = require 'react-redux'
-{ loadProject,
-  loadStepsByProject } = require 'appirio-tech-client-app-layer'
+{ loadStepsByProject } = require 'appirio-tech-client-app-layer'
 
 ManageSteps = React.createClass
   propTypes:
     projectId: React.PropTypes.string.isRequired
 
   componentWillMount: ->
-    { loadProject, loadStepsByProject, projectId } = this.props
+    { loadStepsByProject, projectId } = this.props
 
-    loadProject projectId
     loadStepsByProject projectId
 
   render: ->
-    React.createElement ManageStepsView, this.props
+    { projectId, stepsByProject } = this.props
+
+    props =
+      projectId: projectId
+      stepIds: stepsByProject?.items || []
+      fetching: stepsByProject?.isFetching
+
+    React.createElement ManageStepsView, props
 
 mapStateToProps = (state, ownProps) ->
   id = ownProps.projectId
 
   projectId: id
-  stepIds: state.stepsByProject[id]?.items || []
-  fetching: state.stepsByProject[id]?.isFetching
+  stepsByProject: state.stepsByProject[id]
 
 actionsToBind = {
-  loadProject
   loadStepsByProject
 }
 
