@@ -1,5 +1,5 @@
 {
-  "name": "appirio-tech-ng-manage-steps",
+  "name": "appirio-tech-manage-steps",
   "version": "0.0.0",
   "main": "./index.coffee",
   "devDependencies": {
