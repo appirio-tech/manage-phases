@@ -1,34 +1,40 @@
 'use strict'
 
 React    = require 'react'
-StepRow = require './StepRow.cjsx'
+StepRow  = require './StepRow.coffee'
+Provider = require('react-redux').Provider
+store    = require('appirio-tech-client-app-layer').default
 
-Step1 =
-  name     : 'batman'
-  startDate: '2015-12-01'
-  endDate  : '2015-12-01'
-  dueDate  : '2015-12-01'
-  type     : 'PROJECT_LAUNCHED'
-  status   : 'OPEN'
+initialData =
+  entities:
+    steps:
+      abc:
+        name     : 'batman'
+        startsAt : '2015-12-01'
+        endsAt   : '2015-12-01'
+        stepType : 'designConcepts'
+        status   : 'PROJECT_LAUNCHED'
+        details  :
+          submissionsDueBy: '2015-12-01'
 
-Step2 =
-  name     : 'batman'
-  startDate: '2015-12-01'
-  endDate  : '2015-12-01'
-  dueDate  : '2015-12-01'
-  type     : 'PROJECT_LAUNCHED'
-  status   : 'OPEN'
+  stepsByProject:
+    abc:
+      items: []
+
+storeInstance = store(initialData)
 
 component = ->
-  <div className="StepRowExample">
-    <h1>Example with state edit</h1>
+  <Provider store={storeInstance}>
+    <div className="StepRowExample">
+      <h1>Example with state edit</h1>
 
-    <StepRow data={Step1} state="edit" />
+      <StepRow formKey="abc" projectId="abc" stepId="abc" />
 
-    <h1> Example with no data or state</h1>
+      <h1> Example with no data or state</h1>
 
-    <StepRow/>
-  </div>
+      <StepRow projectId="def" formKey="new" isNew={true} />
+    </div>
+  </Provider>
 
 
 module.exports = component

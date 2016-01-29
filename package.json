@@ -1,18 +1,20 @@
 {
-  "name": "appirio-tech-ng-manage-steps",
+  "name": "appirio-tech-manage-steps",
   "version": "0.0.0",
   "main": "./index.coffee",
   "devDependencies": {
+    "appirio-tech-api-schemas": "^5.0.65",
     "appirio-tech-webpack-config": "0.x.x",
     "history": "^1.17.0",
-    "react-router": "^1.0.3",
-    "npm-prepublish": "^1.2.1"
+    "npm-prepublish": "^1.2.1",
+    "react-router": "^1.0.3"
   },
   "dependencies": {
     "appirio-styles": "0.x.x",
+    "appirio-tech-client-app-layer": "0.0.x",
     "appirio-tech-ng-api-services": "1.x.x",
     "appirio-tech-ng-ui-components": "2.x.x",
-    "appirio-tech-ng-api-services": "1.x.x",
+    "lodash": "^4.0.0",
     "react-datetime": "^2.0.2",
     "react-select": "^0.9.1"
   },

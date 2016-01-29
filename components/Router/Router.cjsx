@@ -1,12 +1,11 @@
 'use strict'
 
-React                = require 'react'
-ExampleApp           = require '../ExampleApp/ExampleApp.cjsx'
-Router               = require '../Router/Router.cjsx'
+React               = require 'react'
+ExampleApp          = require '../ExampleApp/ExampleApp.cjsx'
+Router              = require '../Router/Router.cjsx'
 ManageStepsExamples = require '../ManageSteps/ManageStepsExamples.cjsx'
 StepRowExamples     = require '../StepRow/StepRowExamples.cjsx'
-history              = require('history/lib/createBrowserHistory')()
-
+history             = require('history/lib/createBrowserHistory')()
 
 { Router, Route, IndexRoute } = require 'react-router'
 
