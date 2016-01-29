@@ -71,7 +71,7 @@ StepRow = ({
     StepType = <p className="types">{typeLabel}</p>
 
   <form className="StepRow flex middle" onSubmit={handleSubmit}>
-    { loader }
+    {# loader }
 
     <input type="text" className="name" {...name} />
 
