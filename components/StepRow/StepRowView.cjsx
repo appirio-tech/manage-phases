@@ -23,6 +23,9 @@ types = [
 ,
   label: 'Development'
   value: 'code'
+,
+  label: 'Development Final Fixes'
+  value: 'codeFinalFixes'
 ]
 
 statuses = [
